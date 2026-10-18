@@ -1,0 +1,26 @@
+<Project>
+
+  <!-- The game install: NUCLEAR_OPTION_GAME_DIR if set, else the default Steam library. -->
+  <PropertyGroup>
+    <GameDir Condition="'$(GameDir)' == ''">$(NUCLEAR_OPTION_GAME_DIR)</GameDir>
+    <GameDir Condition="'$(GameDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Nuclear Option</GameDir>
+    <GameDir>$([MSBuild]::EnsureTrailingSlash('$(GameDir)'))</GameDir>
+    <GameManagedDir>$(GameDir)NuclearOption_Data\Managed\</GameManagedDir>
+    <BepInExDir>$(GameDir)BepInEx\</BepInExDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Deterministic>true</Deterministic>
+    <!-- A build depends on the source alone: paths inside the binaries read /_/ rather than this
+         machine's, and the git commit stays out of both the version and the PDB (whose ID the DLL
+         holds), so the plugin deployed here and the one in the release zip are the same bytes.
+         Source Link would only point at the private repo, and no PDB ships. -->
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <EnableSourceLink>false</EnableSourceLink>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+</Project>

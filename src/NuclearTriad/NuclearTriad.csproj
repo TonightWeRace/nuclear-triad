@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>NuclearTriad</AssemblyName>
+    <RootNamespace>NuclearTriad</RootNamespace>
+    <!-- Plugin.Version, so the DLL's file version matches the version BepInEx and F1 show. -->
+    <Version>$([System.Text.RegularExpressions.Regex]::Match($([System.IO.File]::ReadAllText('$(MSBuildThisFileDirectory)Plugin.cs')), 'const string Version = "([^"]+)"').Groups[1].Value)</Version>
+    <DebugType>portable</DebugType>
+    <!-- The game and BepInEx provide every dependency at runtime; nothing is copied beside the plugin. -->
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- .NET Framework 4.8 reference assemblies from NuGet, so neither VS Build Tools nor the targeting pack is needed. -->
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- Compile-only references to what BepInEx and the game load at runtime. Never copied, never committed. -->
+  <ItemGroup>
+    <Reference Include="BepInEx" HintPath="$(BepInExDir)core\BepInEx.dll" Private="false" />
+    <Reference Include="0Harmony" HintPath="$(BepInExDir)core\0Harmony.dll" Private="false" />
+    <Reference Include="Assembly-CSharp" HintPath="$(GameManagedDir)Assembly-CSharp.dll" Private="false" />
+    <Reference Include="Assembly-CSharp-firstpass" HintPath="$(GameManagedDir)Assembly-CSharp-firstpass.dll" Private="false" />
+    <Reference Include="netstandard" HintPath="$(GameManagedDir)netstandard.dll" Private="false" />
+    <Reference Include="UnityEngine" HintPath="$(GameManagedDir)UnityEngine.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(GameManagedDir)UnityEngine.CoreModule.dll" Private="false" />
+    <Reference Include="UnityEngine.IMGUIModule" HintPath="$(GameManagedDir)UnityEngine.IMGUIModule.dll" Private="false" />
+    <Reference Include="UnityEngine.ImageConversionModule" HintPath="$(GameManagedDir)UnityEngine.ImageConversionModule.dll" Private="false" />
+    <Reference Include="UnityEngine.PhysicsModule" HintPath="$(GameManagedDir)UnityEngine.PhysicsModule.dll" Private="false" />
+    <Reference Include="UnityEngine.ScreenCaptureModule" HintPath="$(GameManagedDir)UnityEngine.ScreenCaptureModule.dll" Private="false" />
+    <Reference Include="UnityEngine.TextRenderingModule" HintPath="$(GameManagedDir)UnityEngine.TextRenderingModule.dll" Private="false" />
+    <Reference Include="UnityEngine.UIModule" HintPath="$(GameManagedDir)UnityEngine.UIModule.dll" Private="false" />
+    <Reference Include="UnityEngine.UI" HintPath="$(GameManagedDir)UnityEngine.UI.dll" Private="false" />
+    <Reference Include="Unity.RenderPipelines.Core.Runtime" HintPath="$(GameManagedDir)Unity.RenderPipelines.Core.Runtime.dll" Private="false" />
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime" HintPath="$(GameManagedDir)Unity.RenderPipelines.Universal.Runtime.dll" Private="false" />
+  </ItemGroup>
+
+  <Target Name="CheckGameReferences" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition="!Exists('$(GameManagedDir)Assembly-CSharp.dll')" Text="Nuclear Option not found at $(GameDir). Set NUCLEAR_OPTION_GAME_DIR." />
+    <Error Condition="!Exists('$(BepInExDir)core\BepInEx.dll')" Text="BepInEx isn't installed in $(GameDir). Run tools\install-mods.ps1." />
+  </Target>
+
+  <!-- dotnet build -p:Deploy=true copies the plugin into the game. Close the game first: Windows locks loaded plugins. -->
+  <Target Name="DeployToGame" AfterTargets="Build" Condition="'$(Deploy)' == 'true'">
+    <Copy SourceFiles="$(TargetPath);$(TargetDir)$(TargetName).pdb" DestinationFolder="$(BepInExDir)plugins\NuclearTriad\" Retries="0" />
+    <Message Importance="high" Text="Deployed $(TargetFileName) to $(BepInExDir)plugins\NuclearTriad\" />
+  </Target>
+
+</Project>

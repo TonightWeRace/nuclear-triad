@@ -1,0 +1,4 @@
+# Normalize text files to LF in the repo; checkouts follow core.autocrlf.
+* text=auto
+# Shell scripts run under bash on Windows and Linux, which both need LF.
+*.sh text eol=lf

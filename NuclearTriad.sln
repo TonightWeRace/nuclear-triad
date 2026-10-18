@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F0295883-1773-4473-9CD4-9C297A75E122}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuclearTriad", "src\NuclearTriad\NuclearTriad.csproj", "{6C4844BD-DDC9-4776-ACE7-E6A36DDD3DF7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{87882B94-4958-49B2-992B-3CD4DD3B83C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuclearTriad.Geometry.Tests", "tests\NuclearTriad.Geometry.Tests\NuclearTriad.Geometry.Tests.csproj", "{AE77E156-DED8-40B5-B6CE-4B8103DA6758}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C4844BD-DDC9-4776-ACE7-E6A36DDD3DF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C4844BD-DDC9-4776-ACE7-E6A36DDD3DF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C4844BD-DDC9-4776-ACE7-E6A36DDD3DF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C4844BD-DDC9-4776-ACE7-E6A36DDD3DF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE77E156-DED8-40B5-B6CE-4B8103DA6758}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE77E156-DED8-40B5-B6CE-4B8103DA6758}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE77E156-DED8-40B5-B6CE-4B8103DA6758}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE77E156-DED8-40B5-B6CE-4B8103DA6758}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6C4844BD-DDC9-4776-ACE7-E6A36DDD3DF7} = {F0295883-1773-4473-9CD4-9C297A75E122}
+		{AE77E156-DED8-40B5-B6CE-4B8103DA6758} = {87882B94-4958-49B2-992B-3CD4DD3B83C6}
+	EndGlobalSection
+EndGlobal

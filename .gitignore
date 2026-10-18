@@ -1,0 +1,24 @@
+# Build output and IDE state
+bin/
+obj/
+.vs/
+.idea/
+*.user
+
+# Never committed (see docs/developing.md): decompiled game code, captures, and the
+# local tool cache (downloads, gh, ilspycmd)
+decompiled/
+captures/
+.tools/
+
+# Game binaries and assets never enter the repo. Our plugin DLL is a build
+# output, so nothing tracked should be a binary.
+*.dll
+*.pdb
+*.exe
+*.assets
+*.bundle
+*.unity3d
+
+# PNG renders of the project mark: tools/logo.py --png rebuilds them from the SVGs
+branding/png/
