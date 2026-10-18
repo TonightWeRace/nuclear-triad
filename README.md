@@ -7,53 +7,40 @@
 
 # Nuclear Triad
 
-**Nuclear Triad is designed to answer the question, what do I do if I have triple screens?** Triple screens are common in high-end racing simulators and also high-end flight simulation rigs, but their software support isn't necessarily universal even in their own medium, and it is unrealistic to expect an early access game to implement such a niche feature so quickly. We, however, are impatient. So here you are.
+**Nuclear Triad is designed to answer the question: what do I do if I have triple screens?** Triple screens are common in high-end racing simulators and also high-end flight simulation rigs, but their software support isn't necessarily universal even in their own medium, and it is unrealistic to expect an early access game to implement such a niche feature so quickly. We, however, are impatient. So here you are.
 
 **Nuclear Triad gives you perspective-correct triples.** Using our tuner dialog, we do our best to show you exactly what you are going to see as you tune your parameters in real time. There is an advanced settings section in our plugin config, but we hope you won't need it. Make sure your displays are aligned well in Windows and that they reflect the reality of your physical layout, and then let Nuclear Triad do the rest. Non-standard orientation? Heterogeneous sizes? We got you.
 
 > **Status:** version 0.1.30 is the current release, on the [Releases page](https://github.com/TonightWeRace/nuclear-triad/releases). Tested on two rigs with Direct3D 11; Direct3D 12 ran on one of them early in development.
 
-<!-- Hero image: a photo of a rig, or a capture once captures are cleared for the repo (game assets stay out of the repo by rule). -->
-
 ## Features
 
-### Three real views, not one stretched picture
+### Three correct views, not one stretched picture
 
-- **One camera per screen.** The game's own camera keeps the center screen, and each side screen gets its own camera, turned to face that screen. Nothing is stretched or warped after the fact.
-- **Projection from your rig's real geometry.** Each screen is modelled as a rectangle in front of your eye, and Kooima's generalized perspective projection turns it into that screen's off-axis view. The horizon runs unbroken through both seams, level or banked.
-- **Angled screens, bezel gaps, mixed panels.** Side screens can turn in at any angle, sit at any gap and height, and differ from the center screen in size, resolution and orientation. The development rig pairs a landscape center screen with two portrait side screens.
-- **Looks like the game.** Every frame, the side cameras take on the main camera's settings (clip planes, culling, HDR and MSAA, URP camera data), and each gets its own copy of the cockpit and post-processing passes. The canopy, tonemapping and color match on every screen, and changes to the game's graphics settings carry over.
-- **The game's FOV and zoom still work.** By default the center screen is framed exactly as the game frames it, so it looks like vanilla and zoom keeps working. An advanced framing puts the eye at its measured distance instead.
+- **Projection from your rig's real geometry.** Each screen is modelled as a rectangle in front of your eye, and Kooima's generalized perspective projection turns it into that screen's off-axis view.
+- **Angled screens, bezel gaps, mixed panels.** Side screens can turn in at any angle, sit at any gap and height, and differ from the center screen in size, resolution and orientation.
+- **The game's FOV and zoom still work.** By default the center screen is framed exactly as the game frames it, so it looks like vanilla and zoom keeps working.
 
 ### Spans the window itself
 
 - **No third-party resize tool.** The plugin stretches the game's borderless window over the screens: as tall as the center screen (the default, which keeps the game's HUD and menus scaled exactly as in vanilla), the full height of every screen, or an explicit desktop rectangle.
-- **Black curtains** cover the parts of the side screens the window leaves uncovered, such as the strips above and below the center band.
+- **Black curtains** optionally cover the parts of the side screens the window leaves uncovered, such as the strips above and below the center band.
 - **Your screen setting survives.** The plugin keeps the game's own window setting and writes it back on quit, so a spanned window never becomes your saved setting, even after a crash.
-- **Explicit pixel rectangles** per screen, for setups where Windows sees one wide display, such as NVIDIA Surround or AMD Eyefinity (untested).
 
 ### Setup and tuning on screen
 
-- **Geometry settings in the iRacing and Assetto Corsa style.** Every screen's width; for each side screen, its angle off the center screen's plane, the pixel-to-pixel gap at its seam and its vertical offset; and your eye height. The physical eye distance, each side screen's real angle, the sideways eye offset and pixel rectangles wait behind the Advanced box.
-- **Screens found for you.** Leave each screen's `Monitor` blank, and the plugin takes the left, center and right screens from Windows' display arrangement, however Windows numbers them.
-- **F1 laid out for setup.** ConfigurationManager's F1 window opens on a Start here box, whose button opens the tuner. The settings a rig needs come next, in setup order, and the rest wait behind Advanced. Settings apply as you change them. Numeric settings are sliders with ranges, and every edit is clamped to them.
-- **Guided on-screen tuner** (Right Ctrl+U). A mouse panel on the center screen walks you through the screens' widths, then your eye height, then each side screen's vertical position, gap and angle. For the widths, it shows what each monitor reports and draws a bar of a stated length to check with a tape measure. Its lines are fixed to your view: an eye-level line with a ring straight ahead, and lines rising and falling through each gap. Each step says which line to watch and which way to press. Both sides move together unless you unlink them, changes save as you go, and Revert restores where you started. It works parked, and its lines draw over the canopy frames.
-- **Says what's wrong.** While the rig isn't up, an amber note in the tuner says why and what to do: no mission yet, a `Monitor` that matches no display, the rig switched off, and so on. A Screens line names the Windows display each screen uses, and the note warns when they're out of left-to-right order.
-- **Sky grid** (Right Ctrl+G). Lines fixed in the sky that must run straight across every seam, in any attitude.
-- **Band report.** On rigs where the side screens differ from the center screen, the tuner and the log say how far the picture sits from level on each side screen, and how many pixels to move that screen in Windows' display settings.
-- **Screen alignment tool** (`tools/align-screens.ps1`, run once with the game closed). It lines the Windows display arrangement up with where the screens physically sit, by eye: tick marks run along every seam, the arrow keys slide them until they meet across the bezel, and Enter moves the screens. It writes an undo file first. It comes with the source, not the release zip.
-- **Forgiving settings.** A layout the rig can't draw, such as a screen turned past your eye, keeps the last one that worked and puts a notice on the center screen until the settings change.
+- **Sane defaults.** Leave each screen's `Monitor` blank, and the plugin takes the left, center and right screens from Windows' display arrangement, however Windows numbers them.
+- **Easy setup.** ConfigurationManager's F1 window opens on a Start here box, whose button opens the tuner. The settings a rig needs come next, in setup order, and the rest wait behind Advanced. Settings apply as you change them. Numeric settings are sliders with ranges, and every edit is clamped to them.
+- **Guided on-screen tuner** (Right Ctrl+U). A mouse panel on the center screen walks you through the screens' widths, then your eye height, then each side screen's vertical position, gap and angle. For the widths, it shows what each monitor reports and draws a bar of a stated length to check with a tape measure. Its lines are fixed to your view: an eye-level line with a ring straight ahead, and lines rising and falling through each gap. Each step says which line to watch and which way to press. Both sides move together unless you unlink them, changes save as you go, and Revert restores where you started.
+- **Screen alignment tool** (`tools/align-screens.ps1`, run once with the game closed). Do you hate the default Windows screen alignment tooling? So do we. Our tool lines the Windows display arrangement up with where the screens physically sit, by eye: tick marks run along every seam, the arrow keys slide them until they meet across the bezel, and Enter moves the screens. It writes an undo file first. It comes with the source, not the release zip.
 
 ### Menus and HUD
 
 - **Menus on the center screen.** A spanned window would put the game's menus on the outer screens and stretch the control mapper too big to use. The plugin keeps every menu on the center screen at its single-screen size: the main menu, settings, control bindings, loadout, mission editor, encyclopedia, server browser, chat, messages, pause menu and map.
 - **The HUD's corner panels in the center screen's corners.** The overhead map with its threat list, the weapons, power and countermeasures panel, and the damage display sit where they would on a single screen. They can go on the outer corners instead.
 - **Markers land on their targets on the side screens.** Each HUD marker is placed through the camera of the screen it's on. A marker in a bezel gap waits at the seam, and off-screen arrows still work.
-- **Straight ahead follows your eye height.** With an eye height set, the center screen draws straight ahead away from the window's middle. The view-center diamond, where targeting happens, and the off-screen arrows move with it.
-- **The flight HUD keeps up with the view.** The game places its pitch ladder, heading tape and readouts before it moves the camera, so they trail a turning view by a frame. The plugin places them again after the camera moves.
 - **The flight HUD bends onto the side screens.** When free look puts the aircraft's nose on a side screen, the HUD turns to that screen's horizon and is drawn as big as it looks on the center screen, from your eye distance and the screen's real angle.
 - **A steady cockpit in free look.** Past about 33° of pan, the game slides your eye sideways. The plugin holds it still while the nose is still on a screen, so the cockpit doesn't shift under the HUD, and lets the game's lean back in for checking six.
-- **A quiet signature.** The Nuclear Triad mark sits small and faint in the main menu's bottom-right corner, under the settings screen and popups. `Window.MenuLogo` turns it off.
 
 ### World
 
@@ -64,16 +51,12 @@
 - **Installs by unzipping.** A release is the plugin alone, extracted into the game folder. Nuclear Option needs a BepInEx setting that a new BepInEx leaves off, `HideManagerGameObject`, or no plugin runs. Nuclear Triad turns it on as it first loads, in time for that first start.
 - **Client-only.** No network code, and nothing that changes gameplay or what other players see.
 - **Off is vanilla.** Right Ctrl+T switches the rig off and on mid-flight, and off gives the game's cameras back exactly as they were. Every feature also has its own setting.
-- **Watches for game updates.** The log records the game build and the graphics API at startup, and flags a build that isn't the last verified one, or an API other than Direct3D 11.
 - **Measured cost.** 13.67 ms a frame with the rig on, against 13.34 ms for the game's single camera across the same window: about 2.5% (parked, uncapped, 5440 × 1440, High, RTX 4060 Ti).
 
 ### For developers
 
 - **Control channel**, off by default. While `Dev.CommandChannel` is on, the running plugin reads commands from a file once a second: dumps of cameras, volumes, canvases, menus, displays, geometry and the HUD; captures; frame timing; `rig-status`; and live `get` and `set` of any setting. `tools/send-command.ps1` sends one and prints the result.
 - **Captures built for checking seams** (Right Ctrl+C): the full window, crops across each seam, a JSON sidecar with every camera's frustum, and each seam re-projected as the eye sees it, where straight lines must stay straight. `tools/seam-lines.py` measures them.
-- **Geometry tests that need no game.** The projection, layout, HUD and menu maths live in their own library and run under `dotnet test`.
-- **Reproducible release builds.** `tools/package.ps1` builds and tests the plugin, then writes the release zip. A build depends on the source alone, so the same source gives the same DLL on any commit, and the packager says whether the dev machine runs the exact build it zipped.
-- **Self-contained tooling.** Scripts fetch checksum-pinned tools, install BepInEx with a one-step rollback, and build, test and deploy, all inside the repo folder.
 
 ## Requirements
 
@@ -86,7 +69,7 @@
 
 ### From a release
 
-Releases are zips holding just the plugin, on the [Releases page](https://github.com/TonightWeRace/nuclear-triad/releases). The install guide, [docs/install.md](docs/install.md), goes in every zip as its README. It covers each step, setting up a rig, and troubleshooting. In short, close the game, then extract each of these into the game folder, the one with `NuclearOption.exe`:
+Releases are zips holding just the plugin, on the [Releases page](https://github.com/TonightWeRace/nuclear-triad/releases). The install guide, [docs/install.md](docs/install.md), goes in every zip as its README. It covers each step of the install, and troubleshooting. In short, close the game, then extract each of these into the game folder, the one with `NuclearOption.exe`:
 
 1. BepInEx 5.4.23.5: `BepInEx_win_x64_5.4.23.5.zip`, from [its release](https://github.com/BepInEx/BepInEx/releases/tag/v5.4.23.5).
 2. ConfigurationManager 19.0: `BepInEx.ConfigurationManager_BepInEx5_v19.0.zip`, from [its release](https://github.com/BepInEx/BepInEx.ConfigurationManager/releases/tag/v19.0).
@@ -108,17 +91,22 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools\build.ps1          # b
 
 ## Usage
 
-> Written against 0.1.30. For players, the [install guide](docs/install.md) is the step-by-step version, with troubleshooting.
+> Written against 0.1.30. Installing, and troubleshooting, are in the [install guide](docs/install.md).
 
 ### First run
 
-1. In Steam, press Play and pick **Nuclear Option (DirectX 11)**.
-2. For each side screen, measure the gap: straight across, from its nearest lit pixel to the center screen's nearest lit pixel.
-3. In the main menu, press F1 and open Nuclear Triad. Enter each side screen's `GapMm`. Leave `Monitor` blank to follow Windows' display arrangement. `WidthMm` starts at what each monitor reports, and the tuner checks it; leave `AngleDeg` and `VerticalOffsetMm` to the tuner.
-4. Start a mission and stay parked. Press Open the tuner in F1's Start here box, or Right Ctrl+U, and follow the tuner's five steps: screen widths, eye height, vertical position, gap, angle. The tuner turns on `Geometry.Measured`, so the rig uses your measurements.
-5. Check it in flight. Right Ctrl+G shows the sky grid, whose lines must run straight across both gaps, level and in a bank.
-6. Optionally, size the flight HUD for the side screens. Tick Advanced settings in F1, set `Geometry.EyeDistanceMm` to your eyes' distance from the center screen, and set each side screen's `PhysicalAngleDeg` to its real angle. The tuned `AngleDeg` settles well below the real angle.
-7. If HUD pieces split as they cross a gap, move the side screens in Windows' display settings by the pixels the tuner's vertical position step gives, or run `tools\align-screens.ps1` once with the game closed.
+Before you start, arrange the three displays in Windows to match your screens. In Settings > System > Display, press Identify, then drag them so they sit as your screens do: left to right, and at the heights they really are. Nuclear Triad takes its left, center and right screens from this arrangement. With the source, `tools\align-screens.ps1` does it by eye, with tick marks across each gap.
+
+1. **Start the game and a mission.** In Steam, press Play and pick **Nuclear Option (DirectX 11)**. The window spans all three screens, with the menus on the center one. Start a mission and stay parked in the cockpit: the tuner's lines need the rig, which comes up in a mission.
+2. **Run the tuner.** Press Right Ctrl+U, or press F1 and then Open the tuner in the Start here box. Work through its five steps in order: screen widths, eye height, vertical position, gap and angle. Each step says what to look at and which button to press, and changes save as you go.
+   - **Screen widths** come first, because every other step is worked out from them. Each starts at what its monitor reports to Windows. Check it with a tape measure, edge pixel to edge pixel, or measure the yellow bar the tuner draws on each screen.
+   - **The other four** are set by eye, against lines fixed to your view: an eye-level line with a ring straight ahead, and lines rising and falling through each gap.
+
+   The tuner turns on `Geometry.Measured`, so the rig uses your settings.
+3. **Check it in flight.** Right Ctrl+G shows the sky grid: lines fixed in the sky that must run straight across both gaps, level and in a bank.
+4. **Optionally, size the flight HUD for the side screens.** Tick Advanced settings in F1, set `Geometry.EyeDistanceMm` to your eyes' distance from the center screen, and set each side screen's `PhysicalAngleDeg` to its real angle. The tuned `AngleDeg` settles well below the real angle.
+
+If HUD pieces split as they cross a gap, Windows' arrangement is still off: the tuner's vertical position step says how many pixels to move each side screen in Windows' display settings.
 
 ### Hotkeys
 
@@ -183,8 +171,6 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools\send-command.ps1 rig-s
 - HUD pieces that straddle a gap split briefly when the Windows display arrangement doesn't match where the screens physically sit. Moving the side screens in Windows fixes it; drawing the HUD per screen, planned, would remove the dependence.
 - The loadout screen's rotating aircraft and the main menu's background picture spread onto the side screens.
 - The game's vignette is applied per screen, so it shades each screen's edges, seams included.
-- In steep banks, distant sea can shade differently either side of a seam, probably from per-camera shadow cascades. Not yet confirmed.
-- Not yet tested: several missions in one game session, the full-height span in flight, and anti-aliasing and upscaler modes beyond MSAA.
 
 ## Credits
 
