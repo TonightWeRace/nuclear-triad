@@ -11,7 +11,7 @@
 
 **Nuclear Triad gives you perspective-correct triples.** Using our tuner dialog, we do our best to show you exactly what you are going to see as you tune your parameters in real time. There is an advanced settings section in our plugin config, but we hope you won't need it. Make sure your displays are aligned well in Windows and that they reflect the reality of your physical layout, and then let Nuclear Triad do the rest. Non-standard orientation? Heterogeneous sizes? We got you.
 
-> **Status:** version 0.1.29 is the current release, on the [Releases page](https://github.com/TonightWeRace/nuclear-triad/releases). Tested on two rigs with Direct3D 11; Direct3D 12 ran on one of them early in development.
+> **Status:** version 0.1.30 is the current release, on the [Releases page](https://github.com/TonightWeRace/nuclear-triad/releases). Tested on two rigs with Direct3D 11; Direct3D 12 ran on one of them early in development.
 
 <!-- Hero image: a photo of a rig, or a capture once captures are cleared for the repo (game assets stay out of the repo by rule). -->
 
@@ -53,6 +53,7 @@
 - **The flight HUD keeps up with the view.** The game places its pitch ladder, heading tape and readouts before it moves the camera, so they trail a turning view by a frame. The plugin places them again after the camera moves.
 - **The flight HUD bends onto the side screens.** When free look puts the aircraft's nose on a side screen, the HUD turns to that screen's horizon and is drawn as big as it looks on the center screen, from your eye distance and the screen's real angle.
 - **A steady cockpit in free look.** Past about 33° of pan, the game slides your eye sideways. The plugin holds it still while the nose is still on a screen, so the cockpit doesn't shift under the HUD, and lets the game's lean back in for checking six.
+- **A quiet signature.** The Nuclear Triad mark sits small and faint in the main menu's bottom-right corner, under the settings screen and popups. `Window.MenuLogo` turns it off.
 
 ### World
 
@@ -107,7 +108,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools\build.ps1          # b
 
 ## Usage
 
-> Written against 0.1.29. For players, the [install guide](docs/install.md) is the step-by-step version, with troubleshooting.
+> Written against 0.1.30. For players, the [install guide](docs/install.md) is the step-by-step version, with troubleshooting.
 
 ### First run
 
@@ -149,7 +150,7 @@ Settings live in `BepInEx\config\nuclear-triad.cfg`, and in F1, which shows the 
 | `Window` | `Span` | `CenterBand` | `CenterBand`, `FullHeight`, `Explicit` or `Off` |
 | `Hotkeys` | `Tuner`, `SkyGrid`, `ToggleRig` | Right Ctrl+U, G, T | See Hotkeys |
 
-Advanced: `Geometry.EyeDistanceMm`, `Geometry.CenterFraming` (`GameFov` or `EyeDistance`), `Geometry.EyeSideMm`, `Geometry.VerticalFromDesktop`, each side screen's `PhysicalAngleDeg`, each screen's `PixelRect`, `Window.Curtains`, `Window.MenusOnCenter`, `Window.ExplicitRect`, `Hotkeys.Capture`, `Rig.Enabled`, `Rig.HoldEyeInFreeLook`, `Rig.CockpitOnly`, `Hud.SideScreenMarkers`, `Hud.BendFlightHud`, `Hud.BendScale`, `Hud.FollowStraightAhead`, `Hud.CornerPanels`, `Vegetation.CullAllScreens`, `Vegetation.CullMarginDeg`, `Setup.FixBepInExManager`, and the `Dev` settings.
+Advanced: `Geometry.EyeDistanceMm`, `Geometry.CenterFraming` (`GameFov` or `EyeDistance`), `Geometry.EyeSideMm`, `Geometry.VerticalFromDesktop`, each side screen's `PhysicalAngleDeg`, each screen's `PixelRect`, `Window.Curtains`, `Window.MenusOnCenter`, `Window.MenuLogo`, `Window.ExplicitRect`, `Hotkeys.Capture`, `Rig.Enabled`, `Rig.HoldEyeInFreeLook`, `Rig.CockpitOnly`, `Hud.SideScreenMarkers`, `Hud.BendFlightHud`, `Hud.BendScale`, `Hud.FollowStraightAhead`, `Hud.CornerPanels`, `Vegetation.CullAllScreens`, `Vegetation.CullMarginDeg`, `Setup.FixBepInExManager`, and the `Dev` settings.
 
 ### Turning it off
 

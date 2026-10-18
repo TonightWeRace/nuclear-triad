@@ -28,7 +28,7 @@ $guide = Join-Path $repo 'docs\install.md'
 $license = Join-Path $repo 'LICENSE'
 $publicRepo = 'TonightWeRace/nuclear-triad'
 
-$inputs = 'src', 'tests', 'docs/install.md', 'LICENSE', 'Directory.Build.props', 'NuclearTriad.sln', 'tools/build.ps1', 'tools/package.ps1'
+$inputs = 'src', 'tests', 'branding/nuclear-triad-mark-white.svg', 'docs/install.md', 'LICENSE', 'Directory.Build.props', 'NuclearTriad.sln', 'tools/build.ps1', 'tools/package.ps1'
 $dirty = @(git -C $repo status --porcelain -- $inputs)
 if ($LASTEXITCODE) { throw 'git status failed.' }
 if ($dirty.Count -and -not $AllowDirty) { throw "Uncommitted changes to what the zip is built from:`n$($dirty -join "`n")`nCommit them first, or pass -AllowDirty for a trial." }

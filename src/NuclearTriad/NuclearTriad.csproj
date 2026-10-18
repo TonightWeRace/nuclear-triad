@@ -36,6 +36,11 @@
     <Reference Include="Unity.RenderPipelines.Universal.Runtime" HintPath="$(GameManagedDir)Unity.RenderPipelines.Universal.Runtime.dll" Private="false" />
   </ItemGroup>
 
+  <!-- The project mark, drawn at runtime for the main menu (Rig/MenuLogo.cs): text, so no image enters the repo. -->
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\branding\nuclear-triad-mark-white.svg" LogicalName="NuclearTriad.mark-white.svg" Link="Branding\nuclear-triad-mark-white.svg" />
+  </ItemGroup>
+
   <Target Name="CheckGameReferences" BeforeTargets="ResolveAssemblyReferences">
     <Error Condition="!Exists('$(GameManagedDir)Assembly-CSharp.dll')" Text="Nuclear Option not found at $(GameDir). Set NUCLEAR_OPTION_GAME_DIR." />
     <Error Condition="!Exists('$(BepInExDir)core\BepInEx.dll')" Text="BepInEx isn't installed in $(GameDir). Run tools\install-mods.ps1." />

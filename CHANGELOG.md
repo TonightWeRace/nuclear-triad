@@ -2,6 +2,12 @@
 
 Releases and their zips are on this repository's Releases page. All of them so far are pre-releases.
 
+## 0.1.30 (2026-10-17)
+
+- The Nuclear Triad mark, small and faint, in the main menu's bottom-right corner. It sits under the settings screen and popups and takes no clicks. `Window.MenuLogo`, an advanced setting, turns it off.
+- The plugin's source is public, in this repository.
+- A hand-edited `PixelRect`, `ExplicitRect` or `OriginalScreen` that isn't valid now counts as blank, with one warning in the log, instead of stopping the plugin.
+
 ## 0.1.29 (2026-10-17)
 
 - Each screen's `WidthMm` starts at the picture width its monitor reports to Windows, so a new install is close before anyone measures. Up to 0.1.28 the defaults were the development rig's panels (392, 697 and 392 mm), which a first install on three 797 mm ultrawides got as values.

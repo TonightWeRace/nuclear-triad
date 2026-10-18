@@ -73,6 +73,7 @@ namespace NuclearTriad.Rig
         public readonly ConfigEntry<string> ExplicitRect;
         public readonly ConfigEntry<bool> Curtains;
         public readonly ConfigEntry<bool> MenusOnCenter;
+        public readonly ConfigEntry<bool> MenuLogo;
         public readonly ConfigEntry<string> OriginalScreen;
         public readonly ConfigEntry<bool> HudSideMarkers;
         public readonly ConfigEntry<bool> HudBendFlight;
@@ -147,6 +148,8 @@ namespace NuclearTriad.Rig
             MenusOnCenter = config.Bind("Window", "MenusOnCenter", true,
                 Advanced("Keep the game's menus on the center screen while the window spans several. Off: they spread across the " +
                          "whole window."));
+            MenuLogo = config.Bind("Window", "MenuLogo", true,
+                Advanced("Show the Nuclear Triad mark, small and faint, in the main menu's bottom-right corner."));
             ExplicitRect = config.Bind("Window", "ExplicitRect", "",
                 Advanced("The window's desktop rect 'left,top,right,bottom' in pixels, for Span = Explicit."));
             OriginalScreen = config.Bind("Window", "OriginalScreen", "", new ConfigDescription(

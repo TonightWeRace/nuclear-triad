@@ -22,7 +22,7 @@ namespace NuclearTriad
     {
         public const string Guid = "nuclear-triad";
         public const string Name = "Nuclear Triad";
-        public const string Version = "0.1.29";
+        public const string Version = "0.1.30";
 
         internal static ManualLogSource Log { get; private set; }
 
@@ -39,6 +39,7 @@ namespace NuclearTriad
         EyeHold eyeHold;
         StraightAhead straightAhead;
         MenuPinning menus;
+        MenuLogo menuLogo;
         HudCorners corners;
         CaptureTool capture;
         FrameTimer timing;
@@ -84,6 +85,7 @@ namespace NuclearTriad
             eyeHold = new EyeHold(Logger, rig, geometry);
             straightAhead = new StraightAhead(Logger, rig, geometry);
             menus = new MenuPinning(Logger);
+            menuLogo = new MenuLogo(Logger);
             corners = new HudCorners(Logger);
             // Early in the frame the HUD bend is undone; late, after the camera moves, the eye is
             // held and then the HUD is placed and bent, in that order.
@@ -223,6 +225,7 @@ namespace NuclearTriad
             ViewportMapping? centerShare = haveScreens && span.IsSpanned && Win32.IsAlive(window)
                 ? Viewport.Map(centerRect, Win32.ClientRectOnScreen(window)) : (ViewportMapping?)null;
             menus.Update(geometry.MenusOnCenter.Value, centerShare);
+            menuLogo.Update(geometry.MenuLogo.Value);
             corners.Update(geometry.HudCornerPanels.Value == CornerPlacement.CenterScreen, centerShare);
             rig.Track(rigActive && geometry.RigEnabled.Value && haveScreens);
             timing.Tick(State);
@@ -621,6 +624,7 @@ namespace NuclearTriad
             $" | eye {eyeHold.Status}" +
             $" | straight ahead {straightAhead.Status}" +
             $" | menus {menus.Status}" +
+            $" | menu logo {menuLogo.Status}" +
             $" | hud corners {corners.Status}" +
             $" | vegetation cull {(geometry.VegetationAllScreens.Value ? $"all screens +{geometry.VegetationMarginDeg.Value:0.#}°, {rig.WidenedCulls} frames" : "game's")}";
 

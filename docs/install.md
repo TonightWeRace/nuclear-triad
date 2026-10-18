@@ -2,7 +2,7 @@
 
 Nuclear Triad is a BepInEx plugin for Nuclear Option that gives each screen of a triple-screen rig its own view, projected for where that screen sits in front of you, instead of one picture stretched across all three. The horizon runs unbroken across both gaps, level or banked.
 
-**Version 0.1.29** · Direct3D 11 · tested on Nuclear Option 0.34.1 (Steam build 24724372) with BepInEx 5.4.23.5 and ConfigurationManager 19.0
+**Version 0.1.30** · Direct3D 11 · tested on Nuclear Option 0.34.1 (Steam build 24724372) with BepInEx 5.4.23.5 and ConfigurationManager 19.0
 
 ## Features
 
@@ -24,7 +24,7 @@ Close Nuclear Option first. The game folder is the one with `NuclearOption.exe`:
 
 1. **BepInEx 5.4.23.5.** Download `BepInEx_win_x64_5.4.23.5.zip` from [BepInEx's 5.4.23.5 release](https://github.com/BepInEx/BepInEx/releases/tag/v5.4.23.5) and extract it into the game folder. `winhttp.dll` and a `BepInEx` folder now sit beside `NuclearOption.exe`.
 2. **ConfigurationManager 19.0**, the F1 settings window. Download `BepInEx.ConfigurationManager_BepInEx5_v19.0.zip` from [its 19.0 release](https://github.com/BepInEx/BepInEx.ConfigurationManager/releases/tag/v19.0) and extract it into the game folder.
-3. **Nuclear Triad.** Download `NuclearTriad-0.1.29.zip` from [Nuclear Triad's releases](https://github.com/TonightWeRace/nuclear-triad/releases) and extract it into the game folder. It adds `BepInEx\plugins\NuclearTriad\`.
+3. **Nuclear Triad.** Download `NuclearTriad-0.1.30.zip` from [Nuclear Triad's releases](https://github.com/TonightWeRace/nuclear-triad/releases) and extract it into the game folder. It adds `BepInEx\plugins\NuclearTriad\`.
 4. **Start the game** (see below). The window spans all three screens, with the menus on the center one.
 
 Nuclear Option needs one BepInEx setting that a new BepInEx leaves off, `[Chainloader] HideManagerGameObject`: without it, the game removes BepInEx's manager as it starts, and no plugin runs. Nuclear Triad turns it on in `BepInEx\config\BepInEx.cfg` as it first loads, in time for that first start, so there's nothing to edit. It stays on for every plugin, even after Nuclear Triad is removed.
@@ -81,7 +81,7 @@ To remove BepInEx and ConfigurationManager too, delete `BepInEx\`, `winhttp.dll`
 
 ## Troubleshooting
 
-- **Nothing changes, and F1 doesn't open.** Check that `winhttp.dll` sits beside `NuclearOption.exe`, and that `BepInEx\LogOutput.log` has a line `Loading [Nuclear Triad 0.1.29]`. If the log says `HideManagerGameObject` is still off, set `HideManagerGameObject = true` under `[Chainloader]` in `BepInEx\config\BepInEx.cfg` yourself, with the game closed. Nuclear Triad leaves it off only when its advanced `Setup.FixBepInExManager` setting is off.
+- **Nothing changes, and F1 doesn't open.** Check that `winhttp.dll` sits beside `NuclearOption.exe`, and that `BepInEx\LogOutput.log` has a line `Loading [Nuclear Triad 0.1.30]`. If the log says `HideManagerGameObject` is still off, set `HideManagerGameObject = true` under `[Chainloader]` in `BepInEx\config\BepInEx.cfg` yourself, with the game closed. Nuclear Triad leaves it off only when its advanced `Setup.FixBepInExManager` setting is off.
 - **F1 opens, but the game stays on one screen, or shows one picture stretched across all three.** Open the tuner (Right Ctrl+U). An amber note under its heading says why the rig isn't up and what to do. For example, there's no mission yet, or a `Monitor` matches no display.
 - **Views on the wrong screens.** Open the tuner (Right Ctrl+U). Its Screens line names the Windows display each screen uses, and an amber note says when they're out of order in Windows' arrangement. Clear the three `Monitor` settings in F1, and Nuclear Triad follows Windows' arrangement. If they're blank already, Windows' arrangement doesn't match your screens: in Settings > System > Display, press Identify, then drag the displays to sit as the screens do.
 - **A notice says Nuclear Triad can't draw these geometry settings.** A setting describes a rig it can't draw, such as an eye position past a gap. It keeps the last layout that worked until you change the setting.
